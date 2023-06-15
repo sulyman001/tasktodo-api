@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Controller, Get } from '@nestjs/common';
 import { TodoService } from './todo.service';
 
@@ -10,7 +11,7 @@ export class TodoController {
   //http Get
   @Get()
   getAllTodos() {
-    console.log(this.todoService.getAllTodos());
+    // console.log(this.todoService.getAllTodos());
 
     // To return to the frontend
     return this.todoService.getAllTodos();
