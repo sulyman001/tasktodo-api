@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TodoEntity } from 'src/Entity/todo.entity';
+import { createTodoDto } from 'src/DTO/create-todo.dto';
+import { TodoEntity, TodoStatus } from 'src/Entity/todo.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -17,4 +18,34 @@ export class TodoService {
   // getAllTodos() {
   //   //return ['Todo1', 'Todo2'];
   // }
+
+  // For data not created in the DTO
+  /*
+  async createTodo(title: string, description: string){
+    const todo = new TodoEntity();
+    todo.title = title;
+    todo.description = description;
+    todo.status = TodoStatus.OPEN;
+
+    this.repo.create(todo);
+    return await this.repo.save(todo);
+  }
+  */
+
+  async createTodo(createTodoDto: createTodoDto){
+    const todo = new TodoEntity();
+    const {title, description} = createTodoDto;
+    todo.title = title;
+    todo.description = description;
+    todo.status = TodoStatus.OPEN;
+    // todo.date = createTodoDto.createdDate;
+
+    this.repo.create(todo);
+    try{
+      return await this.repo.save(todo);
+    } catch (err) {
+      throw new InternalServerErrorException('Something went wrong, todo not created');
+    }
+  }
+
 }

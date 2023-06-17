@@ -14,6 +14,7 @@ export class TodoEntity {
 
   @Column()
   status: TodoStatus;
+  date: any;
 }
 
 export enum TodoStatus {

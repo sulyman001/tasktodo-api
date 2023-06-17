@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
 import { TodoService } from './todo.service';
+import { createTodoDto } from 'src/DTO/create-todo.dto';
 
 //http://localhost:3000/api/todo
 //the api is created in the main.ts file
@@ -15,6 +16,16 @@ export class TodoController {
 
     // To return to the frontend
     return this.todoService.getAllTodos();
+  }
+
+
+  @Post()
+  createNewTodo(@Body(ValidationPipe) data: createTodoDto){
+    // const {title, description} = data;
+    // return this.todoService.createTodo(title, description);
+
+    // For better programming- title and description will be created in the DTO file
+    return this.todoService.createTodo(data);
   }
 }
 //Checking if this is resolved
