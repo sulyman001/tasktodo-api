@@ -32,13 +32,13 @@ export class TodoService {
   }
   */
 
-  async createTodo(createTodoDto: createTodoDto){
+  async createTodo(createTodoDTO: createTodoDto){
     const todo = new TodoEntity();
-    const {title, description} = createTodoDto;
+    const {title, description} = createTodoDTO;
     todo.title = title;
     todo.description = description;
     todo.status = TodoStatus.OPEN;
-    // todo.date = createTodoDto.createdDate;
+    // todo.date = createTodoDTO.createdDate;
 
     this.repo.create(todo);
     try{

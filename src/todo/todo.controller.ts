@@ -18,7 +18,7 @@ export class TodoController {
     return this.todoService.getAllTodos();
   }
 
-
+  // http post
   @Post()
   createNewTodo(@Body(ValidationPipe) data: createTodoDto){
     // const {title, description} = data;
@@ -27,5 +27,7 @@ export class TodoController {
     // For better programming- title and description will be created in the DTO file
     return this.todoService.createTodo(data);
   }
+
+  // http update
 }
 //Checking if this is resolved
