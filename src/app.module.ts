@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TodoModule } from './todo/todo.module';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { User } from './user/entities/user.entity';
+import { TaskModule } from './task/task.module';
 
 const ormOptions: TypeOrmModuleOptions = {
   type: 'mysql',
@@ -12,18 +12,18 @@ const ormOptions: TypeOrmModuleOptions = {
   username: 'root',
   password: '', // For production make sure you have a strong password
   database: 'nestjs',
-  autoLoadEntities: true, //Do not use this for production.
-  synchronize: true,
+  // autoLoadEntities: true, //Do not use this for production.
+  // synchronize: true,
   entities: [
     /*...*/
   ],
   migrations: [
     /*...*/
   ],
-  migrationsTableName: 'Migration_Table',
+  migrationsTableName: 'custom_migration_table',
 };
 @Module({
-  imports: [TodoModule, TypeOrmModule.forRoot(ormOptions)],
+  imports: [TodoModule, TypeOrmModule.forRoot(ormOptions), TaskModule],
   controllers: [AppController],
   providers: [AppService],
 })

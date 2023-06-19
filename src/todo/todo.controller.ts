@@ -1,7 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, /*Delete,*/ Get, /*Param, Patch,*/ Post, ValidationPipe } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { createTodoDto } from 'src/DTO/create-todo.dto';
+// import { TodoStatus } from 'src/Entity/todo.entity';
+// import { TodoStatusValidationPipe } from 'src/pipes/TodoStatusValidation.pipe';
 
 //http://localhost:3000/api/todo
 //the api is created in the main.ts file
@@ -28,6 +30,18 @@ export class TodoController {
     return this.todoService.createTodo(data);
   }
 
+  /*
   // http update
+  @Patch(':id')
+  updateTodo(@Body('status', TodoStatusValidationPipe) status: TodoStatus, @Param('id') id: number){
+    return this.todoService.update(id, status);
+  }
+
+  // http delete 
+  @Delete(':id')
+  deleteTodo(@Param('id') id: number) {
+    return this.todoService.delete(id);
+  }
+  */
 }
 //Checking if this is resolved

@@ -7,7 +7,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class TodoService {
-
+  
   //Fetching data from database
   constructor(@InjectRepository(TodoEntity) private repo: Repository<TodoEntity>){}
 
@@ -47,5 +47,25 @@ export class TodoService {
       throw new InternalServerErrorException('Something went wrong, todo not created');
     }
   }
+
+  /*
+  async update(id:number, status: TodoStatus){
+    try{
+      await this
+      await this.repo.update();
+      return this.repo.findOne({id});
+    } catch (err) {
+      throw new InternalServerErrorException('Something went wrong');
+    }
+  }
+
+  async delete(id: number){
+    try{
+      return await this.repo.delete({id});
+    } catch (err) {
+      throw new InternalServerErrorException('Something went wrong');
+    }
+  }
+  */
 
 }
