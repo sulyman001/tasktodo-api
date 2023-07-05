@@ -13,7 +13,7 @@ export class TaskService {
   ) {}
 
   create(createTaskDto: CreateTaskDto) {
-    return this.taskRepository.create(createTaskDto);
+    return this.taskRepository.save(createTaskDto);
   }
 
   findAll() {

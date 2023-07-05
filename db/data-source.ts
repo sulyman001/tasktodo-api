@@ -7,9 +7,7 @@ const ormOptions: DataSourceOptions = {
   username: 'root',
   password: '', // For production make sure you have a strong password
   database: 'nestjs',
-  entities: [
-    /*...*/
-  ],
+  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: ['dist/db/migrations/*.js'],
   migrationsTableName: 'custom_migration_table',
 };

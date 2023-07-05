@@ -13,10 +13,8 @@ const ormOptions: TypeOrmModuleOptions = {
   password: '', // For production make sure you have a strong password
   database: 'nestjs',
   // autoLoadEntities: true, //Do not use this for production.
-  // synchronize: true,
-  entities: [
-    /*...*/
-  ],
+  synchronize: true,
+  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: [
     /*...*/
   ],
